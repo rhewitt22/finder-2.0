@@ -1,0 +1,9 @@
+<ul ng-init="getSpecies()" class="list-group">
+  <li ng-repeat="animal in species" class="list-group-item">
+    <h3>{{ animal.commonName }}&nbsp;&nbsp;&nbsp;<em>({{ animal.scientificName }})</em></h3>
+    <p>Taxon: {{ animal.taxon }}</p>
+    <p>Lead Office: {{ animal.leadOffice }}</p>
+    <p>Range: <span ng-repeat="state in animal.range">{{state}}, </span></p>
+    <a ui-sref="species.update({ id: animal.id })"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit</a>
+  </li>
+</ul>
