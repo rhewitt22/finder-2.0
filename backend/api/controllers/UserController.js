@@ -14,6 +14,16 @@ module.exports = {
       if (err) return res.negotiate(err);
       res.json(history);
     });
+  },
+
+  update: function(req, res) {
+    if (!req.body) res.send(400, { message: 'No data submitted' });
+    User.findOne({ email: req.user[0].email }).exec(function(err, user) {
+      if (err) return res.negotiate(err);
+      if (!user) return res.send(400, { message: 'User not found.'});
+      console.log(user);
+
+    });
   }
 };
 

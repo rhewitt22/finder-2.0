@@ -33,7 +33,8 @@ module.exports.policies = {
   },
 
   'UserController': {
-    'profile': ['tokenAuth']
+    'profile': ['tokenAuth'],
+    'update': ['tokenAuth', 'isAdmin']
     //'canEditProfile' -> Editor can edit their own prof, Admin can edit any prof
   }
 
