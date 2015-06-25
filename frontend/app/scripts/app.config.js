@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('frontendApp')
-  .config(function($urlRouterProvider, $stateProvider, $authProvider) {
+  .config(function($urlRouterProvider, $stateProvider, $authProvider, toastrConfig) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -66,6 +66,9 @@ angular.module('frontendApp')
       url: 'http://localhost:1337/auth/google',
       redirectUri: 'http://localhost:9000/',
       clientId: '302206927623-i66d9a66fda2g1v0cpr6tinglhlasbj0.apps.googleusercontent.com'
+    });
 
+    angular.extend(toastrConfig, {
+      positionClass: 'toast-bottom-right'
     });
   });
