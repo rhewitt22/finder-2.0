@@ -18,6 +18,11 @@ module.exports = {
       required: true
     },
 
+    content: {
+      type: 'string',
+      required: true
+    },
+
     data: {
       type: 'json',
       required: true,
