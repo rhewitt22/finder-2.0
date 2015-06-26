@@ -18,16 +18,26 @@ angular.module('frontendApp')
       };
 
       $http.post('http://localhost:1337/user/update', user).then(function(response) {
-        console.log(response);
+
+        if (user.accountType !== response.data.user.accountType){
+          toastr.warning('Only admin users can change account type.');
+        }
+        $scope.user = response.data.user[0];
         toastr.success('User updated');
+        $scope.getUserData();
+
       }).catch(function(response) {
         toastr.error(response.message, { message: 'Couldn\'t update user.' });
       });
     };
 
-    $http.get('http://localhost:1337/user/profile').then(function(response) {
-      $scope.user = response.data;
-    }).catch(function(response) {
-      toastr.error(response.message, 'Couldn\'t get user history');
-    });
+    $scope.getUserData = function() {
+      $http.get('http://localhost:1337/user/profile').then(function(response) {
+        $scope.user = response.data;
+        $scope.history = response.data.history;
+        console.log($scope.history);
+      }).catch(function(response) {
+        toastr.error(response.message, 'Couldn\'t get user history');
+      });
+    };
   });

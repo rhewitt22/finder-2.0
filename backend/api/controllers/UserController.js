@@ -17,12 +17,30 @@ module.exports = {
   },
 
   update: function(req, res) {
+    console.log(req.body);
+    console.log(req.user[0]);
     if (!req.body) res.send(400, { message: 'No data submitted' });
+    if (req.body === req.user[0]) res.send(200, { message: 'User profile hasn\'t changed.'})
+    if (req.user[0].accountType != 'admin') {
+      req.body.accountType = req.user[0].accountType;
+    }
+
     User.findOne({ email: req.user[0].email }).exec(function(err, user) {
       if (err) return res.negotiate(err);
       if (!user) return res.send(400, { message: 'User not found.'});
-      console.log(user);
 
+      User.update({ email: req.user[0].email }, req.body).exec(function(err, updated) {
+        if (err) return res.negotiate(err);
+        History.create({
+          action: 'update',
+          content: 'user profile',
+          data: req.body,
+          modifiedBy: req.user[0].id
+        }).exec(function(e, history) {
+          if(err) return res.negotiate(err);
+          res.send(200, { message: 'User profile updated.', user: updated });
+        });
+      });
     });
   }
 };
