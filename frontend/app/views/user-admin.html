@@ -1,0 +1,25 @@
+<h1>User Administration</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Job</th>
+      <th>Phone</th>
+      <th>Account Type</th>
+      <th>Modify User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users">
+      <td>{{ user.email }}</td>
+      <td>{{ user.job }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.accountType }}</td>
+      <td>
+        <button class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button>
+        <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
