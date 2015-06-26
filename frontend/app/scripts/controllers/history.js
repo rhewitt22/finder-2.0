@@ -10,7 +10,6 @@
 angular.module('frontendApp')
   .controller('HistoryCtrl', function ($scope, $http, toastr) {
     $http.get('http://localhost:1337/history').then(function(response) {
-      console.log(response.data);
       $scope.history = response.data;
     }).catch(function(response) {
       toastr.error(response.message, 'Unable to load history.');
