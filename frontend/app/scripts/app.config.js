@@ -58,6 +58,12 @@ angular.module('frontendApp')
         url: '/user/profile',
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl'
+      })
+
+      .state('user-admin', {
+        url: '/user/admin',
+        templateUrl: 'views/user-admin.html',
+        controller: 'UserAdminCtrl'
       });
 
     $authProvider.loginUrl = 'http://localhost:1337/auth/login';
