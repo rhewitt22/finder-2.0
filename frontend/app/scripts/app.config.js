@@ -27,7 +27,7 @@ angular.module('frontendApp')
       .state('species.list', {
         url: '/list',
         templateUrl: 'views/species/list.html',
-        controller: 'SpeciesCtrl'
+        controller: 'SpecieslistCtrl'
       })
 
       .state('species.create', {
@@ -71,4 +71,5 @@ angular.module('frontendApp')
     angular.extend(toastrConfig, {
       positionClass: 'toast-bottom-right'
     });
-  });
+  })
+  .constant('API_URL', 'http://localhost:1337/');
