@@ -20,7 +20,7 @@ angular.module('frontendApp')
 
       .state('species', {
         url: '/species',
-        templateUrl: 'views/species/home.html',
+        templateUrl: 'views/species/main.html',
         controller: 'SpeciesCtrl'
       })
 
@@ -54,15 +54,27 @@ angular.module('frontendApp')
         controller: 'HistoryCtrl'
       })
 
-      .state('profile', {
-        url: '/user/profile',
-        templateUrl: 'views/profile.html',
+      .state('user', {
+        url: '/user',
+        templateUrl: 'views/user/main.html',
         controller: 'ProfileCtrl'
       })
 
-      .state('user-admin', {
-        url: '/user/admin',
-        templateUrl: 'views/user-admin.html',
+      .state('user.profile', {
+        url: '/profile',
+        templateUrl: 'views/user/profile.html',
+        controller: 'ProfileCtrl'
+      })
+
+      .state('user.update', {
+        url: '/update/:id',
+        templateUrl: 'views/user/profile.html',
+        controller: 'ProfileCtrl'
+      })
+
+      .state('user.admin', {
+        url: '/admin',
+        templateUrl: 'views/user/admin.html',
         controller: 'UserAdminCtrl'
       });
 

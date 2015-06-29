@@ -3,9 +3,11 @@
 
 <ul class="change-history">
   <li ng-repeat="event in history | orderBy: '-date' " class="alert" ng-class="{'create': 'alert-success', 'delete': 'alert-danger', 'update': 'alert-info' }[event.action]">
-    <p class="change-action">{{ event.action }} {{ event.content }}</p>
-    <p>{{ event.data.commonName }}, <em>{{ event.data.scientificName }}</em></p>
+    <p><strong class="change-action">{{ event.action }} {{ event.content }}</strong></p>
+    <p ng-show="event.content === 'species record' ">{{ event.data.commonName 
+    }}, &nbsp;<em>{{ event.data.scientificName }}</em></p>
+    <p ng-show="event.content === 'user profile' ">{{ event.modifiedBy.email }} edited {{ event.data.email }}</p>
     <p>{{ event.date | date:"MM/dd/yyyy 'at' h:mma" }}</p>
-    <p>{{ event.modifiedBy.email }}</p>
+    <p ng-hide="event.content === 'user profile' ">{{ event.modifiedBy.email }}</p>
   </li>
 </ul>

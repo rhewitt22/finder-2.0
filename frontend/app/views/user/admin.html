@@ -1,7 +1,7 @@
 <h1>User Administration</h1>
 <p>This view will only be available to Admin users.  The main purpose of this view is the ability to grant users additional permissions (i.e. upgrade a user from viewer to editor, or editor to admin).  This is the mechanism available to us to upgrade State biologists to have editing privileges.</p>
 
-<table class="table">
+<table class="table" ng-init="getUsers()">
   <thead>
     <tr>
       <th>Username</th>
@@ -18,8 +18,8 @@
       <td>{{ user.phone }}</td>
       <td>{{ user.accountType }}</td>
       <td>
-        <button class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button>
-        <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+        <button ui-sref="user.update({ id: user.id })" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-edit"></span></button>
+        <button ng-click="destroy(user.id)"class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
       </td>
     </tr>
   </tbody>

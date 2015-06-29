@@ -18,18 +18,23 @@ angular.module('frontendApp')
       return $http.get(API_URL + 'species/' + id);
     }
 
-    function createSpecies(species) {
+    function create(species) {
       return $http.post(API_URL + 'species/create', species);
     }
 
-    function updateSpecies(species) {
+    function update(species) {
       return $http.post(API_URL + 'species/update/' + species.id, species);
+    }
+
+    function destroy(species) {
+      return $http.post(API_URL + 'species/destroy/', species);
     }
 
     return {
       getSpecies: getSpecies,
       getOne: getOne,
-      createSpecies: createSpecies,
-      updateSpecies: updateSpecies
+      create: create,
+      update: update,
+      destroy: destroy
     };
   });

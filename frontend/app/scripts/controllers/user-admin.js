@@ -9,9 +9,20 @@
  */
 angular.module('frontendApp')
   .controller('UserAdminCtrl', function ($scope, User, toastr) {
-    User.getUsers().then(function(response) {
-      $scope.users = response.data;
-    }).catch(function(response) {
-      toastr.error(response.message, 'Could not get users.');
-    });
+    $scope.getUsers = function() {
+      User.getUsers().then(function(response) {
+        $scope.users = response.data;
+      }).catch(function(response) {
+        toastr.error(response.data.message, 'Could not get users.');
+      });
+    };
+
+    $scope.destroy = function(id) {
+      User.destroy(id).then(function(response) {
+        $scope.getUsers();
+        toastr.success(response.data.message, response.statusText);
+      }).catch(function(response) {
+        toastr.error(response.data.message, response.statusText);
+      });
+    };
   });

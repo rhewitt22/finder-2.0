@@ -20,15 +20,15 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Species <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a ui-sref="species.list">List</a></li>
-            <li><a ui-sref="species.create">Create</a></li>
+            <li><a ng-show="isEditor() || isAdmin()" ui-sref="species.create">Create</a></li>
             <li><a ui-sref="species.history">History</a></li>
           </ul>
         </li>
         <li class="dropdown" ui-sref-active="active" ng-show="isAuthenticated()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a ui-sref="profile">User Profile</a></li>
-            <li><a ui-sref="user-admin">Administer Users</a></li>
+            <li><a ui-sref="user.update({ id: getId() })">User Profile</a></li>
+            <li><a ng-show="isAdmin()" ui-sref="user.admin">Administer Users</a></li>
           </ul>
         </li>
         </li>

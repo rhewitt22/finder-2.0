@@ -8,17 +8,11 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('SpeciesCtrl', function ($scope, Species, toastr, $stateParams) {
-    var params = {
-        scientificName: $scope.scientificName,
-        commonName: $scope.commonName,
-        taxon: $scope.taxon,
-        leadOffice: $scope.leadOffice,
-        range: $scope.range
-      };
+  .controller('SpeciesCtrl', function ($scope, Species, toastr, $stateParams, User) {
 
     $scope.createSpecies = function() {
-      Species.createSpecies(params).then(function (response) {
+      Species.create($scope.species).then(function (response) {
+        $scope.species = {};
         toastr.success(response.data.message, 'Created!');
       }).catch(function (response) {
         toastr.error(response.data.message, 'Could not create species.');
@@ -26,7 +20,8 @@ angular.module('frontendApp')
     };
 
     $scope.updateSpecies = function() {
-      Species.updateSpecies(params).then(function (response) {
+      $scope.species.id = $stateParams.id;
+      Species.update($scope.species).then(function (response) {
         toastr.success(response.data.message, 'Updated!');
       }).catch(function (response) {
         toastr.error(response.data.message, 'Could not update species.');
@@ -35,10 +30,17 @@ angular.module('frontendApp')
 
     $scope.getOne = function() {
       Species.getOne($stateParams.id).then(function (response) {
-        console.log(response);
         $scope.species = response.data;
       }).catch(function (response) {
         toastr.error(response.data.message, 'Couldn\'t get species.');
       });
+    };
+
+    $scope.isEditor = function() {
+      return User.isEditor();
+    };
+
+    $scope.isAdmin = function() {
+      return User.isAdmin();
     };
   });

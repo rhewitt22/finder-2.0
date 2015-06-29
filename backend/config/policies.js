@@ -29,12 +29,15 @@ module.exports.policies = {
   '*': true,
 
   'SpeciesController': {
-    'create': ['tokenAuth', 'canEditSpecies']
+    'create': ['tokenAuth', 'canEditSpecies'],
+    'update': ['tokenAuth', 'canEditSpecies'],
+    'destroy': ['tokenAuth', 'canEditSpecies']
   },
 
   'UserController': {
     'profile': ['tokenAuth'],
-    'update': ['tokenAuth', 'isAdmin']
+    'update': ['tokenAuth', 'isAdmin'],
+    'destroy': ['tokenAuth', 'isAdmin']
     //'canEditProfile' -> Editor can edit their own prof, Admin can edit any prof
   }
 
