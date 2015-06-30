@@ -24,13 +24,12 @@ module.exports = {
       if(err) return res.negotiate(err);
       if(species) return res.send(409, { message: 'Species already exists.'});
 
-      var range = req.body.range.split(', ');
       var params = {
         scientificName: req.body.scientificName,
         commonName: req.body.commonName,
         taxon: req.body.taxon,
         leadOffice: req.body.leadOffice,
-        range: range
+        range: req.body.range
       };
 
       Species.create(params).exec(function(er, newSpecies) {
@@ -55,7 +54,7 @@ module.exports = {
     if(!req.body.scientificName) return res.send(400, { message: 'No scientific name in request.'});
 
     var body = req.body;
-    
+
     Species.findOne({ id: body.id }).exec(function(err, species) {
       if(err) return res.negotiate(err);
       if(!species) return res.send(404, { message: 'Species not found.'});
@@ -66,8 +65,8 @@ module.exports = {
       if (body.leadOffice) species.leadOffice = body.leadOffice;
       if (body.range) species.range = body.range;
 
-      Species.update({ 
-        id: body.id 
+      Species.update({
+        id: body.id
       }, species, function(err, updatedSpecies) {
         if (err) return res.negotiate(err);
         if (!updatedSpecies) return res.send(500, 'No updated species.');
@@ -79,7 +78,7 @@ module.exports = {
           modifiedBy: req.user[0].id
         }).exec(function(e, history) {
           if(err) return res.negotiate(err);
-          res.send(200, { message: 'Species record updated.', user: req.user[0] });
+          res.send(200, { message: 'Species record updated.', species: updatedSpecies });
         });
       });
     });
@@ -87,15 +86,15 @@ module.exports = {
 
   destroy: function(req, res) {
     if (req.user[0].accountType !== 'admin') {
-      return res.send(401, { 
+      return res.send(401, {
         message: 'You need admin priviledges to delete species.'
       });
     }
 
-    Species.findOne({ 
-      scientificName: req.body.scientificName 
+    Species.findOne({
+      scientificName: req.body.scientificName
     }, function(err, foundSpecies) {
-      
+
       if (err) return res.negotiate(err);
       if (!foundSpecies) return res.send(400, { message: 'Species not found.'});
       Species.destroy({ id: foundSpecies.id }, function(err) {
@@ -107,7 +106,7 @@ module.exports = {
           modifiedBy: req.user[0].id
         }).exec(function(err, history) {
           if(err) return res.negotiate(err);
-          res.send(200, { message: 'Species deleted', user: foundSpecies });
+          res.send(200, { message: 'Species deleted', species: foundSpecies });
         });
       });
     });
