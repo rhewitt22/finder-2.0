@@ -9,13 +9,17 @@
  */
 angular.module('frontendApp')
   .controller('SpeciesCtrl',
-    function ($scope, Species, toastr, $stateParams, User, Map) {
+    function ($scope, Species, toastr, $stateParams, User, Map, Office) {
       $scope.center = {
         lat: 34.8934492,
         lng: -94.1480978,
         zoom: 3
       };
       $scope.species = { range: []};
+
+    Office.getOffices().then(function (response) {
+      $scope.offices = response.data;
+    });
 
     $scope.createSpecies = function() {
       Species.create($scope.species).then(function (response) {
