@@ -15,7 +15,6 @@ angular.module('frontendApp')
         lng: -94.1480978,
         zoom: 3
       };
-      $scope.species = { range: []};
 
     Office.getOffices().then(function (response) {
       $scope.offices = response.data;

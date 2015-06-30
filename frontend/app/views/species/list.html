@@ -1,5 +1,13 @@
-<ul ng-init="getSpecies()" class="list-group" ng-init="getSpecies()">
-  <li ng-repeat="animal in species" class="list-group-item">
+<div class="form-group">
+  <label class="sr-only">Query Species</label>
+  <div class="input-group">
+    <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+    <input type="search" class="form-control" ng-model="query" placeholder="Enter term to filter species">
+  </div>
+</div>
+
+<ul class="list-group" ng-init="getSpecies()">
+  <li ng-repeat="animal in species | filter: query" class="list-group-item">
     <h3>{{ animal.commonName }}&nbsp;&nbsp;&nbsp;<em>({{ animal.scientificName }})</em></h3>
     <p>Taxon: {{ animal.taxon }}</p>
     <p>Lead Office: {{ animal.leadOffice }}</p>
