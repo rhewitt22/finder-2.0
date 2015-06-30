@@ -8,4 +8,4 @@
  *
  * Main module of the application.
  */
-angular.module('frontendApp', ['ui.router', 'satellizer', 'toastr']);
+angular.module('frontendApp', ['ui.router', 'satellizer', 'toastr', 'leaflet-directive']);

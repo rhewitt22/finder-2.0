@@ -29,14 +29,14 @@
   </div>
 </div>
 
-<h3>User History</h3>
+<div ng-show="isEditor() || isAdmin()">
+  <h3>User History</h3>
+  <p>Below is a list of modifications to the database that you have made:</p>
 
-<p>Below is a list of modifications to the database that you have made:</p>
-
-<ul class="change-history" ng-init="getUserData()">
-  <li ng-repeat="event in history | orderBy: '-date' " class="alert" ng-class="{'create': 'alert-success', 'delete': 'alert-danger', 'update': 'alert-info' }[event.action]">
-    <p class="change-action">{{ event.action }} {{ event.content }}</p>
-    <p>{{ event.date | date:"MM/dd/yyyy 'at' h:mma" }}</p>
-  </li>
-</ul>
-
+  <ul class="change-history" ng-init="getUserData()">
+    <li ng-repeat="event in history | orderBy: '-date' " class="alert" ng-class="{'create': 'alert-success', 'delete': 'alert-danger', 'update': 'alert-info' }[event.action]">
+      <p class="change-action">{{ event.action }} {{ event.content }}</p>
+      <p>{{ event.date | date:"MM/dd/yyyy 'at' h:mma" }}</p>
+    </li>
+  </ul>
+</div>
