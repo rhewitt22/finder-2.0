@@ -1,19 +1,11 @@
 <h2>Query the At-Risk Species Finder</h2>
 
-<div class="panel panel-info" ng-init="getOne()">
+<div class="panel panel-default" ng-init="getOne()">
   <div class="panel-heading">
-    <h2 class="panel-title">Update a Species</h2>
+    <h2 class="panel-title">Query the Database</h2>
   </div>
   <div class="panel-body">
     <form ng-submit="queryDatabase()">
-      <div class="form-group">
-        <label for="scientificName">Scientific Name:</label>
-        <input ng-model="species.scientificName" type="text" class="form-control" id="scientificName" placeholder="Ambystoma barbouri" required>
-      </div>
-      <div class="form-group">
-        <label for="commonName">Common Name:</label>
-        <input ng-model="species.commonName" type="text" class="form-control" id="commonName" placeholder="Streamside salamander">
-      </div>
       <!-- <div class="form-group">
         <select class="form-control">
           <option ng-repeat="office in offices" value="{{ office.name }}">{{ office.name +', ' + office.state }}</option>
@@ -21,7 +13,7 @@
       </div> -->
       <div class="form-group">
         <label for="taxon">Taxonomic Group:</label>
-        <select ng-model="species.taxon" class="form-control" id="taxon" required>
+        <select ng-model="query.taxon" class="form-control" id="taxon">
           <option disabled selected> Select a Taxon </option>
           <option value="Amphibian">Amphibian</option>
           <option value="Amphipod">Amphipod</option>
@@ -47,7 +39,7 @@
       </div>
       <div class="form-group">
         <label for="leadOffice">Lead Office:</label>
-        <select ng-model="species.leadOffice" class="form-control" id="leadOffice" required>
+        <select ng-model="query.leadOffice" class="form-control" id="leadOffice">
           <option disabled selected> Select an Office </option>
           <option value="Daphne">Daphne, AL</option>
           <option value="Arkansas">Conway, AR</option>
@@ -76,7 +68,7 @@
         <leaflet geojson="geojson" center="center" style="height: 300px;"></leaflet>
       </div>
 
-      <button type="submit" class="btn btn-info btn-block">Update</button>
+      <button type="submit" class="btn btn-default btn-block">Query</button>
     </form>
   </div>
 </div>

@@ -30,11 +30,20 @@ angular.module('frontendApp')
       return $http.post(API_URL + 'species/destroy/', species);
     }
 
+    function query(params) {
+      if (params.range.length === 0) {
+        delete params.range;
+      }
+      console.log(params);
+      //return $http.post(API_URL + 'species/', params);
+    }
+
     return {
       getSpecies: getSpecies,
       getOne: getOne,
       create: create,
       update: update,
-      destroy: destroy
+      destroy: destroy,
+      query: query
     };
   });

@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('QueryCtrl', function ($scope, Species, Map, toastr) {
+  .controller('QueryCtrl', function ($scope, Species, Map) {
     $scope.query = { range: [] };
     $scope.center = {
       lat: 34.8934492,
@@ -17,11 +17,12 @@ angular.module('frontendApp')
     };
 
     $scope.queryDatabase = function() {
-      Species.query($scope.query).then(function (response) {
-        $scope.results = response.data;
-      }).catch(function (response) {
-        toastr.error(response.statusText, 'Query unsuccessful.');
-      });
+      Species.query($scope.query);
+      // Species.query($scope.query).then(function (response) {
+      //   $scope.results = response.data;
+      // }).catch(function (response) {
+      //   toastr.error(response.statusText, 'Query unsuccessful.');
+      // });
     };
 
     $scope.loadMap = function() {

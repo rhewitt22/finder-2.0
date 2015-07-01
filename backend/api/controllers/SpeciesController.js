@@ -32,7 +32,7 @@ module.exports = {
         range: req.body.range
       };
 
-      Species.create(params).exec(function(er, newSpecies) {
+      Species.create(params).exec(function(err, newSpecies) {
         if(err) return res.negotiate(err);
 
         var modified = req.user[0];
