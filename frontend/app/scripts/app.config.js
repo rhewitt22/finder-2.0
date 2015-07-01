@@ -21,37 +21,49 @@ angular.module('frontendApp')
       .state('species', {
         url: '/species',
         templateUrl: 'views/species/main.html',
-        controller: 'SpeciesCtrl'
+        controller: 'SpeciesListCtrl'
+      })
+
+      .state('species.summary', {
+        url: '/summary',
+        templateUrl: 'views/species/summary.html',
+        controller: 'SpeciesListCtrl'
       })
 
       .state('species.list', {
         url: '/list',
         templateUrl: 'views/species/list.html',
-        controller: 'SpecieslistCtrl'
+        controller: 'SpeciesListCtrl'
       })
 
       .state('species.create', {
         url: '/create',
         templateUrl: 'views/species/create.html',
-        controller: 'SpeciesCtrl'
+        controller: 'CreateSpeciesCtrl'
       })
 
       .state('species.update', {
         url: '/update/:id',
         templateUrl: 'views/species/update.html',
-        controller: 'SpeciesCtrl'
+        controller: 'UpdateSpeciesCtrl'
       })
 
-      .state('species.detail', {
-        url: '/detail/:id',
-        templateUrl: 'views/species/detail.html',
-        controller: 'SpeciesCtrl'
-      })
+      // .state('species.detail', {
+      //   url: '/detail/:id',
+      //   templateUrl: 'views/species/detail.html',
+      //   controller: 'SpeciesCtrl'
+      // })
 
       .state('species.history', {
         url: '/history',
         templateUrl: 'views/species/history.html',
         controller: 'HistoryCtrl'
+      })
+
+      .state('query', {
+        url: '/query',
+        templateUrl: 'views/query.html',
+        controller: 'QueryCtrl'
       })
 
       .state('user', {

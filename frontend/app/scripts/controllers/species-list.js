@@ -8,7 +8,16 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('SpecieslistCtrl', function ($scope, Species, toastr) {
+  .controller('SpeciesListCtrl', function ($scope, $state, User, Species, toastr) {
+    $scope.$state = $state;
+    $scope.isAdmin = function() {
+      return User.isAdmin();
+    };
+
+    $scope.isEditor = function() {
+      return User.isEditor();
+    };
+
     $scope.getSpecies = function() {
       Species.getSpecies().then(function(response) {
         $scope.species = response.data;
