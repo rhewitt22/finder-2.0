@@ -12,11 +12,11 @@ module.exports.createToken = function(user) {
   };
 
   return jwt.encode(payload, config.TOKEN_SECRET);
-}
+};
 
 module.exports.verifyToken = function(token) {
   return jwt.decode(token, config.TOKEN_SECRET);
-}
+};
 
 module.exports.decodeToken = function(token) {
   var parts = token.split('.');
@@ -34,11 +34,11 @@ module.exports.decodeToken = function(token) {
     payload: payload,
     signature: signature
   };
-}
+};
 
 function base64urlDecode(str) {
   return new Buffer(base64urlUnescape(str), 'base64').toString();
-};
+}
 
 function base64urlUnescape(str) {
   str += Array(5 - str.length % 4).join('=');

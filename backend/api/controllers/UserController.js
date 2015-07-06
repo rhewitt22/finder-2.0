@@ -19,7 +19,7 @@ module.exports = {
   update: function(req, res) {
     console.log(req.body);
     if (!req.body) res.send(400, { message: 'No data submitted' });
-    if (req.body === req.user[0]) res.send(200, { message: 'User profile hasn\'t changed.'})
+    if (req.body === req.user[0]) res.send(200, { message: 'User profile hasn\'t changed.'});
 
     User.findOne({ email: req.user[0].email }).exec(function(err, user) {
       if (err) return res.negotiate(err);
