@@ -14,5 +14,6 @@ angular.module('frontendApp', [
   'toastr',
   'leaflet-directive',
   '720kb.datepicker',
-  'tableSort'
+  'tableSort',
+  'ngAnimate'
 ]);

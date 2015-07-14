@@ -116,3 +116,16 @@ footer {
     border-radius: 0;
   }
 }
+
+/* Animations */
+tr.ng-enter,
+tr.ng-move,
+.list-group-item.ng-enter,
+.list-group-item.ng-move {
+  animation: lightSpeedIn .5s;
+}
+
+tr.ng-leave,
+.list-group-item.ng-leave {
+  animation: lightSpeedOut .5s;
+}
