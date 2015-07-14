@@ -1,1 +1,8 @@
-<button ng-click="login()" class="btn btn-primary btn-block">Login with Google</button>
+<div class="jumbotron">
+  <h1>At-Risk Species Finder</h1>
+  <p>U.S. Fish &amp; Wildlife Southeast Region</p>
+  <p ng-hide="isAuthenticated()">
+    <a class="btn btn-primary btn-lg" ui-sref="login" role="button">Login/Register</a>
+  </p>
+</div>
+

@@ -37,6 +37,16 @@ module.exports = {
     history: {
       collection: 'history',
       via: 'modifiedBy'
+    },
+
+    validationMessages: {
+      email: {
+        unique: 'The email address provided already exists'
+      },
+      accountType: {
+        required: 'An account type is required',
+        enum: 'The provided account type is invalid'
+      }
     }
 
   }

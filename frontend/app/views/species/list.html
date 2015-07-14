@@ -6,6 +6,7 @@
       <th>Taxon</th>
       <th>Lead Office</th>
       <th>State Range</th>
+      <th ng-show="isAdmin() || isEditor()">Modify</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,10 @@
       <td>{{ animal.taxon }}</td>
       <td>{{ animal.leadOffice }}</td>
       <td>{{ animal.range.join(', ') }}</td>
+      <td ng-show="isAdmin() || isEditor()">
+        <button ui-sref="species.update({ id: animal.id })" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-edit"></span></button>
+        <button ng-click="destroy(animal.id)"class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+      </td>
     </tr>
   </tbody>
 </table>

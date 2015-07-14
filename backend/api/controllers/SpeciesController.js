@@ -4,7 +4,8 @@
  * @description :: Server-side logic for managing species
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-var _ = require('underscore');
+var _ = require('underscore'),
+  moment = require('moment');
 
 module.exports = {
 	// find: function(req, res) {
@@ -18,19 +19,19 @@ module.exports = {
  //  },
 
   create: function(req, res) {
-    if(!req.body.scientificName) return res.send(400, 'No scientific name sent.');
+    if(!req.body.scientificName) return res.badRequest('No scientific name sent.');
 
     Species.findOne({ scientificName: req.body.scientificName }).exec(function(err, species) {
       if(err) return res.negotiate(err);
       if(species) return res.send(409, { message: 'Species already exists.'});
 
-      var params = {
-        scientificName: req.body.scientificName,
-        commonName: req.body.commonName,
-        taxon: req.body.taxon,
-        leadOffice: req.body.leadOffice,
-        range: req.body.range
-      };
+      var params = _.extend({}, req.body);
+
+      if (params.status) {
+        _.each(params.status, function(el, i) {
+          el.date = moment.utc(el.date).format();
+        });
+      }
 
       Species.create(params).exec(function(err, newSpecies) {
         if(err) return res.negotiate(err);
@@ -51,7 +52,7 @@ module.exports = {
   },
 
   update: function(req, res) {
-    if(!req.body.scientificName) return res.send(400, { message: 'No scientific name in request.'});
+    if(!req.body.scientificName) return res.badRequest('No scientific name in request.');
 
     var body = req.body;
 
@@ -59,14 +60,13 @@ module.exports = {
       if(err) return res.negotiate(err);
       if(!species) return res.send(404, { message: 'Species not found.'});
 
-      if (body.scientificName) species.scientificName = body.scientificName;
-      if (body.commonName) species.commonName = body.commonName;
-      if (body.taxon) species.taxon = body.taxon;
-      if (body.leadOffice) species.leadOffice = body.leadOffice;
-      if (body.range) species.range = body.range;
+      _.extend(species, body);
+      _.each(species.status, function(el, i) {
+        el.date = moment.utc(el.date).format();
+      });
 
       Species.update({
-        id: body.id
+        id: species.id
       }, species, function(err, updatedSpecies) {
         if (err) return res.negotiate(err);
         if (!updatedSpecies) return res.send(500, 'No updated species.');
@@ -74,7 +74,7 @@ module.exports = {
         History.create({
           action: 'update',
           content: 'species record',
-          data: req.body,
+          data: species,
           modifiedBy: req.user[0].id
         }).exec(function(e, history) {
           if(err) return res.negotiate(err);

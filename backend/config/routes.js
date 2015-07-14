@@ -42,4 +42,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  // Disable cookies
+  "/*" : "SessionController.disable",
+
+  'POST /query/endemic': 'QueryController.endemic',
+  'POST /query/non-endemic': 'QueryController.nonEndemic',
+  'GET /query/other-region': 'QueryController.otherRegion'
 };

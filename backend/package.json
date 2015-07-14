@@ -3,7 +3,12 @@
   "private": true,
   "version": "0.0.1",
   "description": "A database of species at risk.",
-  "keywords": ["At-risk species", "Government", "USFWS", "U.S. Fish and Wildlife Service"],
+  "keywords": [
+    "At-risk species",
+    "Government",
+    "USFWS",
+    "U.S. Fish and Wildlife Service"
+  ],
   "dependencies": {
     "ejs": "~0.8.4",
     "include-all": "~0.1.3",
@@ -13,14 +18,14 @@
     "rc": "~0.5.0",
     "request": "^2.58.0",
     "sails": "~0.11.0",
-    "sails-disk": "~0.10.0",
+    "sails-hook-validation": "^0.4.0",
     "sails-mongo": "^0.11.2",
     "underscore": "^1.8.3"
   },
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "test": "mocha test/bootstrap.test.js test/**/*.spec.js"
+    "test": "mocha -R spec -b --recursive -t 5000"
   },
   "main": "app.js",
   "repository": {
@@ -30,13 +35,17 @@
   "author": "Roy Hewitt",
   "license": "Public Domain",
   "devDependencies": {
-    "grunt": "^0.4.5",
+    "barrels": "^1.5.0",
+    "chai": "^3.0.0",
+    "grunt": "0.4.2",
     "grunt-contrib-jshint": "^0.11.2",
-    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-watch": "~0.5.3",
     "grunt-mocha-test": "^0.12.7",
-    "grunt-sails-linker": "^0.10.1",
+    "grunt-sails-linker": "~0.9.5",
     "jshint-stylish": "^2.0.1",
     "load-grunt-tasks": "^3.2.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "sails-memory": "^0.10.5",
+    "supertest": "^1.0.1"
   }
 }

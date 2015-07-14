@@ -1,0 +1,25 @@
+<div ng-if="results" class="panel panel-success" id="query-results">
+  <div class="panel-heading">
+    <h2 class="panel-title">Query Results</h2>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Scientific Name</th>
+        <th>Common Name</th>
+        <th>Taxon</th>
+        <th>Lead Office</th>
+        <th>State Range</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="result in results">
+        <td>{{ result.scientificName }}</td>
+        <td>{{ result.commonName }}</td>
+        <td>{{ result.taxon }}</td>
+        <td>{{ result.leadOffice }}</td>
+        <td>{{ result.range.join(', ') }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

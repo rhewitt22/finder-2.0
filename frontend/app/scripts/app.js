@@ -8,4 +8,10 @@
  *
  * Main module of the application.
  */
-angular.module('frontendApp', ['ui.router', 'satellizer', 'toastr', 'leaflet-directive']);
+angular.module('frontendApp', [
+  'ui.router',
+  'satellizer',
+  'toastr',
+  'leaflet-directive',
+  '720kb.datepicker'
+]);

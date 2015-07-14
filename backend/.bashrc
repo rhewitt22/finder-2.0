@@ -1,0 +1,1 @@
+alias web="cd ~/web"

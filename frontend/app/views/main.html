@@ -1,5 +1,7 @@
 <div class="jumbotron">
   <h1>At-Risk Species Finder</h1>
-  <p class="lead">U.S. Fish &amp; Wildlife Service Southeast Region</p>
-  <a ng-hide="isAuthenticated()" ui-sref="login" class="btn btn-primary">Login/Register</a>
+  <p>U.S. Fish &amp; Wildlife Southeast Region</p>
+  <p ng-hide="isAuthenticated()">
+    <a class="btn btn-primary btn-lg" href="#" role="button" ng-click="login()"><span class="fa fa-google"></span> Login/Register</a>
+  </p>
 </div>

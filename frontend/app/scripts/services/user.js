@@ -30,7 +30,6 @@ angular.module('frontendApp')
       var payload = $auth.getPayload();
       if (!payload) {return  false;}
       return  payload.act === 'editor';
-      
     }
 
     function isAdmin() {

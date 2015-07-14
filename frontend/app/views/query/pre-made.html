@@ -1,0 +1,53 @@
+<h2>Pre-made queries</h2>
+
+<p>These queries were designed to make the At-Risk Species Finder easier to work with.  If you need more fine-grained control you can always create a custom query, or request a common query be added to this list.  <strong>When a query is successfully executed the results will be displayed at the bottom of the page.</strong></p>
+
+  <!-- Endemic query -->
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="panel-title">Endemic species (range includes only one state)</h2>
+    </div>
+    <div class="panel-body">
+      <p>By default this query returns all species that are found in only one state.  If you would like to limit your query to a specific state enter the full state name (not the abbreviation) into the input below.  To retrieve any endemic species leave the field blank.</p>
+      <form class="form">
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="query.endemic" placeholder="Enter a state: i.e. 'Alabama'">
+        </div>
+        <button class="btn btn-info btn-block" ng-click="queryEndemic()">Submit Query<span class="fa fa-cog fa-spin" ng-show="loading"></span></button>
+      </form><br>
+      <div ng-show="toggle.endemic" ng-include="'views/partials/query-results.html'"></div>
+    </div>
+  </div>
+
+  <!-- Species occur in more than one state -->
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="panel-title">Species that occur in more than one state</h2>
+    </div>
+    <div class="panel-body">
+      <p>By default this query returns all species that are found in more than one state.  If you would like to limit your query to make sure that a specific state is included in the species range enter the state name (not the abbreviation) in the input below.  To retrieve any endemic species leave the field blank.</p>
+      <form class="form">
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="query.nonEndemic" placeholder="Enter a state: i.e. 'Georgia'">
+        </div>
+        <button class="btn btn-info btn-block" ng-click="queryNonEndemic()">Submit Query<span class="fa fa-cog fa-spin" ng-show="loading"></span></button>
+      </form><br>
+      <div ng-show="toggle.nonEndemic" ng-include="'views/partials/query-results.html'"></div>
+    </div>
+  </div>
+
+  <!-- Species occur in more than one state -->
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="panel-title">Species that will be addressed by a Region other than the Southeast</h2>
+    </div>
+    <div class="panel-body">
+      <p>By default this query returns all species that are found in more than one state.  If you would like to limit your query to make sure that a specific state is included in the species range enter the state name (not the abbreviation) in the input below.  To retrieve any endemic species leave the field blank.</p>
+      <form class="form">
+        <button class="btn btn-info btn-block" ng-click="otherRegion()">Submit Query<span class="fa fa-cog fa-spin" ng-show="loading"></span></button>
+      </form><br>
+      <div ng-show="toggle.otherRegion" ng-include="'views/partials/query-results.html'"></div>
+    </div>
+  </div>
+</div>
+

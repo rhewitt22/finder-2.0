@@ -12,12 +12,6 @@ angular.module('frontendApp')
         controller: 'LoginCtrl'
       })
 
-      .state('login', {
-        url: '/login',
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
-      })
-
       .state('species', {
         url: '/species',
         templateUrl: 'views/species/main.html',
@@ -62,7 +56,19 @@ angular.module('frontendApp')
 
       .state('query', {
         url: '/query',
-        templateUrl: 'views/query.html',
+        templateUrl: 'views/query/main.html',
+        controller: 'QueryCtrl'
+      })
+
+      .state('query.pre-made', {
+        url: '/pre-made',
+        templateUrl: 'views/query/pre-made.html',
+        controller: 'PremadeQueryCtrl'
+      })
+
+      .state('query.custom', {
+        url: '/custom',
+        templateUrl: 'views/query/custom.html',
         controller: 'QueryCtrl'
       })
 
@@ -99,7 +105,7 @@ angular.module('frontendApp')
     });
 
     angular.extend(toastrConfig, {
-      positionClass: 'toast-bottom-right'
+      positionClass: 'toast-top-left'
     });
   })
   .constant('API_URL', 'http://localhost:1337/');

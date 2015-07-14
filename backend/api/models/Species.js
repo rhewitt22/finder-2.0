@@ -38,6 +38,19 @@ module.exports = {
 
     status: {
       type: 'array'
+    },
+
+    validationMessages: {
+      scientificName: {
+        required: 'Scientific name is required',
+        unique: 'This scientific name already exists'
+      },
+      leadOffice: {
+        required: 'Lead office is required'
+      },
+      taxon: {
+        required: 'Taxon is required'
+      }
     }
 
   }

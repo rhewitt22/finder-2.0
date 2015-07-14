@@ -1,18 +1,31 @@
 var Sails = require('sails'),
-  sails;
+  Barrels = require('barrels'),
+  app;
 
 before(function(done) {
+
   Sails.lift({
-    // configuration for testing purposes
+    log: {
+      level: 'error'
+    },
+    models: {
+      connection: 'test',
+      migrate: 'drop'
+    }
   }, function(err, server) {
-    sails = server;
+    app = server;
     if (err) return done(err);
-    // here you can load fixtures, etc.
-    done(err, sails);
+
+    var barrels = new Barrels();
+    fixtures = barrels.data;
+
+    barrels.populate(function(err) {
+      done(err, sails);
+    });
   });
 });
 
-after(function(done) {
-  // here you can clear fixtures, etc.
+after(function (done) {
+  console.log(); // Skip a line before displaying Sails lowering logs
   Sails.lower(done);
 });
