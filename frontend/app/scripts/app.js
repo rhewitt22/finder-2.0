@@ -13,5 +13,6 @@ angular.module('frontendApp', [
   'satellizer',
   'toastr',
   'leaflet-directive',
-  '720kb.datepicker'
+  '720kb.datepicker',
+  'tableSort'
 ]);

@@ -1,16 +1,16 @@
-<table class="table table-striped" ng-init="getSpecies()">
+<table ts-wrapper class="table table-striped" ng-init="getSpecies()">
   <thead>
     <tr>
-      <th>Scientific Name</th>
-      <th>Common Name</th>
-      <th>Taxon</th>
-      <th>Lead Office</th>
+      <th ts-criteria="scientificName">Scientific Name</th>
+      <th ts-criteria="commonName">Common Name</th>
+      <th ts-criteria="taxon" ts-default>Taxon</th>
+      <th ts-criteria="leadOffice">Lead Office</th>
       <th>State Range</th>
       <th ng-show="isAdmin() || isEditor()">Modify</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="animal in species | filter:query">
+    <tr ng-repeat="animal in species | filter:query" ts-repeat>
       <td>{{ animal.scientificName }}</td>
       <td>{{ animal.commonName }}</td>
       <td>{{ animal.taxon }}</td>
