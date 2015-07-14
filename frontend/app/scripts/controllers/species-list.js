@@ -20,7 +20,7 @@ angular.module('frontendApp')
 
     $scope.getSpecies = function() {
       Species.getSpecies().then(function(response) {
-        $scope.species = response.data;
+        $scope.species = Species.alphabetizeRange(response.data);
       }).catch( function (response) {
         if (response.status === 401){
           toastr.error(response.statusText, 'You must be logged in to view the species list.');

@@ -8,7 +8,7 @@
  * Service in the frontendApp.
  */
 angular.module('frontendApp')
-  .service('Species', function ($http, API_URL) {
+  .service('Species', function ($http, $q, API_URL) {
 
     function getSpecies() {
       return $http.get(API_URL + 'species/');
@@ -30,12 +30,11 @@ angular.module('frontendApp')
       return $http.post(API_URL + 'species/destroy/', species);
     }
 
-    function query(params) {
-      if (params.range.length === 0) {
-        delete params.range;
-      }
-      console.log(params);
-      //return $http.post(API_URL + 'species/', params);
+    function alphabetizeRange(species) {
+      _.each(species, function(animal) {
+        animal.range.sort();
+      });
+      return species;
     }
 
     return {
@@ -44,6 +43,6 @@ angular.module('frontendApp')
       create: create,
       update: update,
       destroy: destroy,
-      query: query
+      alphabetizeRange: alphabetizeRange
     };
   });
