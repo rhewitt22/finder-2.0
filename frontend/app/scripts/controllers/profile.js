@@ -29,7 +29,6 @@ angular.module('frontendApp')
 
     $scope.getUserData = function() {
       User.getUser($stateParams.id).then(function(response) {
-        console.log(response);
         $scope.user = response.data;
         $scope.history = response.data.history;
       }).catch(function(response) {
