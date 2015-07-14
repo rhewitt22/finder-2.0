@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('PremadeQueryCtrl', function ($scope, toastr, Query) {
+  .controller('PremadeQueryCtrl', function ($scope, toastr, Query, Species) {
     $scope.query = {};
     $scope.toggle = {
       endemic: false,
@@ -45,7 +45,7 @@ angular.module('frontendApp')
     };
 
     function onSuccess(response) {
-      $scope.results = response.data;
+      $scope.results = Species.alphabetizeRange(response.data);
       toastr.success(response.statusText);
     }
 

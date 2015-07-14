@@ -1,19 +1,19 @@
-<div ng-if="results" class="panel panel-success" id="query-results">
+<div ts-wrapper ng-if="results" class="panel panel-success" id="query-results">
   <div class="panel-heading">
     <h2 class="panel-title">Query Results</h2>
   </div>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Scientific Name</th>
-        <th>Common Name</th>
-        <th>Taxon</th>
-        <th>Lead Office</th>
+        <th ts-criteria="scientificName">Scientific Name</th>
+        <th ts-criteria="commonName">Common Name</th>
+        <th ts-criteria="taxon" ts-default>Taxon</th>
+        <th ts-criteria="leadOffice">Lead Office</th>
         <th>State Range</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="result in results">
+      <tr ng-repeat="result in results" ts-repeat>
         <td>{{ result.scientificName }}</td>
         <td>{{ result.commonName }}</td>
         <td>{{ result.taxon }}</td>
