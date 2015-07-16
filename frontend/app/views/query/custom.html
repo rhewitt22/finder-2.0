@@ -1,6 +1,6 @@
 <div class="panel panel-default" ng-init="getOne()">
   <div class="panel-heading">
-    <h2 class="panel-title">Query the Database</h2>
+    <h2 class="panel-title">Create a custom query</h2>
   </div>
   <div class="panel-body">
     <form ng-submit="queryDatabase()">
@@ -11,8 +11,7 @@
       </div> -->
       <div class="form-group">
         <label for="taxon">Taxonomic Group:</label>
-        <select ng-model="query.taxon" class="form-control" id="taxon">
-          <option disabled selected> Select a Taxon </option>
+        <select multiple ng-model="query.taxon" class="form-control" id="taxon">
           <option value="Amphibian">Amphibian</option>
           <option value="Amphipod">Amphipod</option>
           <option value="Bee">Bee</option>
@@ -37,8 +36,7 @@
       </div>
       <div class="form-group">
         <label for="leadOffice">Lead Office:</label>
-        <select ng-model="query.leadOffice" class="form-control" id="leadOffice">
-          <option disabled selected> Select an Office </option>
+        <select multiple ng-model="query.leadOffice" class="form-control" id="leadOffice">
           <option value="Daphne">Daphne, AL</option>
           <option value="Arkansas">Conway, AR</option>
           <option value="Jacksonville">Jacksonville, FL</option>
@@ -63,11 +61,18 @@
 
       <div class="form-group" ng-init="loadMap()">
         <label>Species Range:</label>
+        <input type="radio" ng-model="query.rangeQueryType" name="stateQuery" value="any">&nbsp;&nbsp;Any&nbsp;&nbsp;
+        <input type="radio" ng-model="query.rangeQueryType" name="stateQuery" value="all">&nbsp;&nbsp;All
         <leaflet geojson="geojson" center="center" style="height: 300px;"></leaflet>
       </div>
 
-      <button type="submit" class="btn btn-default btn-block">Query</button>
-    </form>
+      <button type="submit" class="btn btn-info btn-block">
+        &nbsp;&nbsp;&nbsp;Query <span ng-if="loading.query" class="fa fa-spin fa-gear"></span>
+      </button>
+    </form><br>
+    <button class="btn btn-default btn-block" ng-click="resetQuery()">
+      &nbsp;&nbsp;&nbsp;Reset <span ng-if="loading.reset" class="fa fa-spin fa-gear"></span>
+    </button>
   </div>
 </div>
 

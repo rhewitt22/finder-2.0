@@ -22,9 +22,14 @@ angular.module('frontendApp')
       return $http.get(API_URL + 'query/other-region');
     }
 
+    function custom(query) {
+      return $http.get(API_URL + 'query/custom?' + query);
+    }
+
     return {
       otherRegion: otherRegion,
       nonEndemic: nonEndemic,
-      endemic: endemic
+      endemic: endemic,
+      custom: custom
     };
   });

@@ -1,3 +1,4 @@
+var qs = require('qs');
 /**
  * QueryController
  *
@@ -80,6 +81,26 @@ module.exports = {
       if (err) return res.negotiate(err);
       res.ok(species);
     });
+  },
+
+  custom: function(req, res) {
+    // Grab the parsed query string
+    var params = qs.parse(req.url.split('?')[1]),
+      supportedParams = ['leadOffice', 'range', 'rangeQueryType', 'taxon', 'status'],
+      query = _.pick(params, supportedParams);
+
+    if (!query.range) delete query.rangeQueryType;
+
+    if (query.rangeQueryType === 'all') {
+      delete query.rangeQueryType;
+      // Change to an an AND query
+    } else {
+      delete query.rangeQueryType;
+      Species.find(query).exec(function(err, species) {
+        if (err) return res.serverError(err);
+        res.ok(species);
+      });
+    }
   }
 };
 
