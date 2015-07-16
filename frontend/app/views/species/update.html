@@ -68,12 +68,19 @@
           <option value="Region 6">Mountain-Prairie Region</option>
         </select>
       </div>
-      <div class="form-group" ng-repeat="status in species.status track by $index">
-        <label for="status">Status(es):</label>
-        <input type="text" class="form-control" ng-model="species.status[$index].name">
-        <datepicker date-format="yyyy-MM-dd">
-          <input type="text" class="form-control"  ng-model="species.status[$index].date">
-        </datepicker>
+      <label>Status(es):</label><br>
+      <div class="form-inline" ng-repeat="status in species.status track by $index">
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="species.status[$index].name" placeholder="Status" ng-change="changeStatus($index)">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="species.status[$index].url" placeholder="Document URL" ng-change="changeStatus($index)">
+        </div>
+        <div class="form-group">
+          <datepicker date-format="yyyy-MM-dd">
+            <input type="text" class="form-control"  ng-model="species.status[$index].date" placeholder="Date" ng-change="changeStatus($index)">
+          </datepicker>
+        </div>
       </div>
       <div class="form-group">
         <label>Species Range:</label>

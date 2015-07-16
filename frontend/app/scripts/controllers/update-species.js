@@ -34,6 +34,7 @@ angular.module('frontendApp')
       Species.getOne($stateParams.id).then(function (response) {
         $scope.species = response.data;
         $scope.loadMap();
+        $scope.species.status.push({});
       }).catch(function (response) {
         toastr.error(response.data.message, 'Couldn\'t get species.');
       });
@@ -62,5 +63,12 @@ angular.module('frontendApp')
           });
         });
       });
+    };
+
+    $scope.changeStatus = function(index) {
+      // If status has a name and date, add a placeholder for another status
+      if(index === $scope.species.status.length -1 && $scope.species.status[index].name && $scope.species.status[index].date) {
+        $scope.species.status.push('');
+      }
     };
   });
