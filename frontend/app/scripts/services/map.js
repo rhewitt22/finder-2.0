@@ -53,9 +53,9 @@ angular.module('frontendApp')
       };
 
       if (feature.properties.inRange) {
-        props.fillColor = 'red';
+        props.fillColor = '#3498db';
       } else {
-        props.fillColor = 'green';
+        props.fillColor = '#95a5a6';
       }
       return props;
     }
@@ -63,9 +63,9 @@ angular.module('frontendApp')
     function updateStyle(feature) {
       var layer = feature.leafletEvent.target;
       if (feature.model.properties.inRange) {
-        layer.setStyle({ fillColor: 'red' });
+        layer.setStyle({ fillColor: '#3498db' });
       } else {
-        layer.setStyle({ fillColor: 'green' });
+        layer.setStyle({ fillColor: '#95a5a6' });
       }
     }
 
